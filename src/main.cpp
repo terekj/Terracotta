@@ -39,14 +39,14 @@
 
 // SPI HANDLERS
 void Send_Command(uint8_t cmd) {
-	DC_LOW();      // set DC first (A0)
+	DC_LOW(); 
 	CS_LOW();
 	SPI_SEND(cmd);
 	CS_HIGH();
 }
 
 void Send_Data(uint8_t d) {
-	DC_HIGH();     // set DC first (A0)
+	DC_HIGH();
 	CS_LOW();
 	SPI_SEND(d);
 	CS_HIGH();
@@ -87,7 +87,7 @@ void ST7735_init() {
 	Send_Data(RGB_ORDER);
 
 	Send_Command(COLMOD);
-	Send_Data(0x05);   // 16-bit color
+	Send_Data(0x05); // 16-bit color
 	_delay_ms(10);
 
 	Send_Command(DISPON);
@@ -115,11 +115,9 @@ int main() {
 
 	DDRC = 0x00;
 	PORTC = 0xFF;
-    // All control pins output
     DDRB |= (0x01 << PORTB0) | (0x01 << PORTB1) | (0x01 << PORTB2);
 
-    // Default states
-    PORTB |= (0x01 << PORTB2) | (1 << PORTB0) | (0x01 << PORTB1);   // RST HIGH
+    PORTB |= (0x01 << PORTB2) | (1 << PORTB0) | (0x01 << PORTB1);
 	SPI_INIT();
 	ST7735_init();
 
