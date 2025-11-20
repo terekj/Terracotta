@@ -1,0 +1,58 @@
+@startuml
+
+struct Application <<Singleton>> {
+- *currentFrame
+- std::queue animationQueue
++update() : bool
+- draw() : void
+- pushAnimation(Animation) : void
+}
+struct Animation {
+- Frame[] frames
+Animation(Frame[]) : void
+getFrames() : Frame[]
+}
+struct Frame {
+- Scene currentScene
+- duration_t duration
+- std::pair<char, char> origin
+}
+struct Scene {
+- std::pair<char, char> dimensions
+- int pixelBitMap[][]
+Scene(pair<char, char> dimensions, str pathToPNG) : void
++ getPixelBitMap() : int[dimensions.first][dimensions.second]
+}
+struct Game <<Singleton>> {
+- Player player
+- Application app
+}
+struct Player <<Singleton>> {
+- Species species
+- char level
+- char levelProgress
+- char levelGoal
+- char hungerProgress
+- char hungerGoal
+- char sleepProgress
+- char sleepGoal
+}
+struct Species {
+- SpeciesType speciesType
+- Scene[] characterSprites
++ getCharacterSprite(int spriteLevel) : Scene
+}
+enum SpeciesType {
+MOSS
+MIDNIGHT
+CARMINE
+RAZZMIC
+}
+Frame o-- Scene
+Application <-- Animation
+Player <-- Species
+Game <-- Player
+Game <-- Application
+Animation *-- Frame
+Species o-- Scene
+@enduml
