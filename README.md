@@ -32,14 +32,18 @@ The TERRACOTTA device integrates several hardware subsystems around a central mi
 Main components:
 
 Microcontroller  (Atmega328p)
-→ Task scheduling and system control
-→ EEPROM graphics storage
+
+- Task scheduling and system control
+- EEPROM graphics storage
+
 SPI Bus  
-→ TFT Display  
+- TFT Display  
+
 GPIO  
-→ Buttons
+- Buttons
+
 PWM
-→ Piezo
+- Piezo
 
 ---
 
